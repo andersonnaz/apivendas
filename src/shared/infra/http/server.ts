@@ -1,7 +1,9 @@
+import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import routes from './routes/index';
 import { AppError } from '@shared/errors/appError';
+import { dataSource } from '../typeorm';
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.use(
     },
 );
 
-app.listen(3000, () => {
-    console.log('app running at port 3000');
+dataSource.initialize().then(() => {
+    app.listen(3000, () => {
+        console.log('app running at port 3000');
+    });
 });
