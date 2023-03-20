@@ -14,9 +14,7 @@ export class CreateProductService {
         price,
         quantity,
     }: IRequest): Promise<Product> {
-        const productExists = await ProductRepository.findOneBy({
-            name,
-        });
+        const [productExists] = await ProductRepository.findByName(name);
         if (productExists) {
             throw new AppError('There is already one product with this name');
         }
