@@ -6,7 +6,7 @@ interface IRequest {
     id: string;
 }
 
-export class ShowProductService {
+export default class ShowProductService {
     public async execute({ id }: IRequest): Promise<Product> {
         const product = await ProductRepository.findOne({ where: { id } });
 
