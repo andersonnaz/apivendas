@@ -12,7 +12,6 @@ export default class UsersController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        console.log(request.user.id);
         const listUsers = new ListUserService();
         const users = await listUsers.execute();
         return response.json(users);
